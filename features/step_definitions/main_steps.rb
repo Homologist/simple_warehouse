@@ -15,7 +15,7 @@ Then("I can't see the crate at position {int} {int}") do |int, int2|
 end
 
 When("I locate crate of product code {int}") do |int|
-  pending # Write code here that turns the phrase above into concrete actions
+  @located = SimpleWarehouse.locate(p)
 end
 
 Then("I can see all crate of product code {int}") do |int|

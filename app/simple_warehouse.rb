@@ -12,6 +12,10 @@ class SimpleWarehouse
     @grid.delete_if{|crate| crate[:x] == x && crate[:y] == y}
   end
 
+  def self.locate(p)
+    @grid.select{|crate| crate[:id] == p}
+  end
+
   def self.grid
     @grid
   end
