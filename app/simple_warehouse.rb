@@ -1,5 +1,13 @@
 class SimpleWarehouse
 
+  def self.init
+    @grid = []
+  end
+
+  def self.grid
+    @grid
+  end
+
   def run
     @live = true
     puts 'Type `help` for instructions on usage'

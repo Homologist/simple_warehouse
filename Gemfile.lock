@@ -62,6 +62,8 @@ GEM
     dry-initializer (2.4.0)
     equalizer (0.0.11)
     erubis (2.7.0)
+    factory_bot (4.10.0)
+      activesupport (>= 3.0.0)
     factory_girl (4.9.0)
       activesupport (>= 3.0.0)
     faraday (0.15.2)
@@ -218,7 +220,6 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    seedbank (0.4.0)
     sexp_processor (4.11.0)
     shellany (0.0.1)
     shoulda-matchers (3.1.2)
@@ -228,7 +229,6 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    sqlite3 (1.3.13)
     term-ansicolor (1.6.0)
       tins (~> 1.0)
     terminal-table (1.8.0)
@@ -265,6 +265,7 @@ DEPENDENCIES
   cucumber
   dotenv (~> 2.1.1)
   dry-initializer
+  factory_bot
   factory_girl
   fivemat
   guard-cucumber
@@ -279,10 +280,8 @@ DEPENDENCIES
   rubycritic
   sandi_meter
   sdoc (~> 0.4.0)
-  seedbank
   shoulda-matchers
   simplecov
-  sqlite3 (~> 1.3, >= 1.3.11)
   time_difference
   timecop
   zeus (~> 0.15.4)

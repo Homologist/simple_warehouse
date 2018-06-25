@@ -1,0 +1,15 @@
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+/junit.xml/
+
+# rspec failure tracking
+.rspec_status
+*.swp
+.DS_Store
+.byebug_history
