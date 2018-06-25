@@ -6,11 +6,21 @@ RSpec.describe SimpleWarehouse do
     expect(grid.empty?).to eq(true)
   end
 
-  it "store a new crate at the good position size and id" do
-    x, y, w, h, p = [0, 0, 1, 2, "A"]
-    params = [{x: x, y: y, w: w, h: h, id: p}]
-    SimpleWarehouse.init
-    crate = SimpleWarehouse.store(x, y, w, h, p)
-    expect(crate).to eq(params)
+  context "action on existing crates" do
+    before(:each) do
+      @x, @y, @w, @h, @p = [0, 0, 1, 2, "A"]
+      SimpleWarehouse.init
+    end
+    it "store a new crate at the good position size and id" do
+      params = [{x: @x, y: @y, w: @w, h: @h, id: @p}]
+      crate = SimpleWarehouse.store(@x, @y, @w, @h, @p)
+      expect(crate).to eq(params)
+    end
+
+    it "remove a crate at the good position" do
+      SimpleWarehouse.store(@x, @y, @w, @h, @p)
+      grid = SimpleWarehouse.remove(@x, @y)
+      expect(grid.empty?).to eq(true)
+    end
   end
 end

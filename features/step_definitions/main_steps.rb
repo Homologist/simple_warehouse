@@ -6,11 +6,11 @@ Given("a square crate of size {int} product code {int} at position {int} {int}")
   SimpleWarehouse.store(int3, int4, int, int, int2)
 end
 
-When("I move the crate to position {int} {int}") do |int, int2|
-  pending # Write code here that turns the phrase above into concrete actions
+When("I remove the crate at position {int} {int}") do |int, int2|
+  SimpleWarehouse.remove(int, int2)
 end
 
-Then("I can see the crate at position {int} {int}") do |int, int2|
+Then("I can't see the crate at position {int} {int}") do |int, int2|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
