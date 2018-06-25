@@ -8,6 +8,10 @@ class SimpleWarehouse
     @grid << {x: x, y: y, w: w, h: h, id: p}
   end
 
+  def self.remove(x, y)
+    @grid.delete_if{|crate| crate[:x] == x && crate[:y] == y}
+  end
+
   def self.grid
     @grid
   end

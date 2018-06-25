@@ -5,8 +5,8 @@ Feature: Move stuff in our storage
   Scenario: I want move a crate
     Given a grid
     And a square crate of size 1 product code 42 at position 0 0
-    When I move the crate to position 3 2
-    Then I can see the crate at position 3 2
+    When I remove the crate at position 3 2
+    Then I can't see the crate at position 3 2
 
   Scenario: I want locate all crates
     Given a grid
