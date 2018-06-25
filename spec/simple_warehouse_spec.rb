@@ -22,5 +22,15 @@ RSpec.describe SimpleWarehouse do
       grid = SimpleWarehouse.remove(@x, @y)
       expect(grid.empty?).to eq(true)
     end
+
+    it "locate a crate at the good position" do
+      SimpleWarehouse.store(@x, @y, @w, @h, @p)
+      SimpleWarehouse.store(@x, 2, @w, @h, @p)
+      SimpleWarehouse.store(1, 0, @w, @h, "B")
+      located = SimpleWarehouse.locate(@p)
+      expect(located.include?({x: @x, y: @y, w: @w, h: @h, id: @p})).to eq(true)
+      expect(located.include?({x: @x, y: 2, w: @w, h: @h, id: @p})).to eq(true)
+      expect(located.count).to eq(2)
+    end
   end
 end
