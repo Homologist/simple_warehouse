@@ -7,7 +7,7 @@ gem 'dotenv',                    '~> 2.1.1'
 gem 'dry-initializer'
 gem "rubycritic"
 gem 'sdoc',                      '~> 0.4.0', group: :doc
-gem "seedbank"
+gem 'factory_bot'
 gem "sandi_meter"
 gem 'time_difference'
 gem 'codecov', require: false
@@ -32,4 +32,3 @@ gem 'byebug'
 gem 'cucumber', :require => false
 gem 'factory_girl'
 gem 'hirb'
-gem 'sqlite3', '~> 1.3', '>= 1.3.11'

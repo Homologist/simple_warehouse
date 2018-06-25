@@ -1,5 +1,5 @@
 Given("a grid") do
-  pending # Write code here that turns the phrase above into concrete actions
+  SimpleWarehouse.init
 end
 
 Given("a square crate of size {int} product code {int} at position {int} {int}") do |int, int2, int3, int4|
