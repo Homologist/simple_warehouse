@@ -4,6 +4,10 @@ class SimpleWarehouse
     @grid = []
   end
 
+  def self.store(x, y, w, h, p)
+    @grid << {x: x, y: y, w: w, h: h, id: p}
+  end
+
   def self.grid
     @grid
   end
