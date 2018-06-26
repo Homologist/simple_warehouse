@@ -21,3 +21,7 @@ end
 Then("I can see all crate of product code {int}") do |int|
   pending # Write code here that turns the phrase above into concrete actions
 end
+
+Then("I get the message {string}") do |string|
+  pending # Write code here that turns the phrase above into concrete actions
+end
