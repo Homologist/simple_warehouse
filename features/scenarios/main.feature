@@ -21,10 +21,16 @@ Feature: Move stuff in our storage
     When a square crate of size 1 product code 42 at position 0 -1
     Then I get the message "Wrong position"
 
-  Scenario: I want to create crate which doesn t fit
+  Scenario: I want to create crate which doesn t fit bottom left
     Given a grid
     When a square crate of size 1 product code 42 at position 1 1
     When a square crate of size 2 product code 42 at position 0 0
+    Then I get the message "I doesn t fit"
+
+  Scenario: I want to create crate which doesn t fit top right
+    Given a grid
+    When a square crate of size 3 product code 42 at position 1 1
+    When a square crate of size 2 product code 42 at position 2 2
     Then I get the message "I doesn t fit"
 
   Scenario: I want to remove a crate which doesn t exist

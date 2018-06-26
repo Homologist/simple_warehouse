@@ -3,11 +3,11 @@ Given("a grid") do
 end
 
 Given("a square crate of size {int} product code {int} at position {int} {int}") do |int, int2, int3, int4|
-  SimpleWarehouse.store(int3, int4, int, int, int2)
+  @response = SimpleWarehouse.store(int3, int4, int, int, int2)
 end
 
 When("I remove the crate at position {int} {int}") do |int, int2|
-  SimpleWarehouse.remove(int, int2)
+  @response = SimpleWarehouse.remove(int, int2)
 end
 
 Then("I can't see the crate at position {int} {int}") do |int, int2|
@@ -25,5 +25,5 @@ Then("I can see all crate of product code {int}") do |int|
 end
 
 Then("I get the message {string}") do |string|
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(@response).to eq(string)
 end
