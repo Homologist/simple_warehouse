@@ -1,15 +1,27 @@
 class SimpleWarehouse
-
+require "byebug"
   def self.init
     @grid = []
   end
 
   def self.store(x, y, w, h, p)
-    @grid << {x: x, y: y, w: w, h: h, id: p}
+    if x.is_a?(Integer) && y.is_a?(Integer) && x >= 0 && y >= 0
+      if fit(@grid, x, y, w, h)
+        @grid << {x: x, y: y, w: w, h: h, id: p}
+      else
+        "I doesn t fit"
+      end
+    else
+      "Wrong position"
+    end
   end
 
   def self.remove(x, y)
-    @grid.delete_if{|crate| crate[:x] == x && crate[:y] == y}
+    if @grid.select{|crate| crate[:x] == x && crate[:y] == y}.empty?
+      "Crate doesn t exist"
+    else
+      @grid.delete_if{|crate| crate[:x] == x && crate[:y] == y}
+    end
   end
 
   def self.locate(p)
@@ -56,6 +68,12 @@ exit             Exits the application.'
   def exit
     puts 'Thank you for using simple_warehouse!'
     @live = false
+  end
+
+  def self.fit(grid, x, y, w, h)
+    grid.map do |hash|
+      !((hash[:x] + hash[:w]) > x && (hash[:y] + hash[:h]) > y && hash[:x] <= x && hash[:y] <= y  || (x + w) > hash[:x] && (y + h) > hash[:y] && x  <= hash[:x] && y <= hash[:y])
+    end.all?
   end
 
 end
