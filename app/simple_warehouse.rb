@@ -1,51 +1,66 @@
+require_relative "simple_warehouse/grid"
+require_relative "simple_warehouse/crate"
+
 class SimpleWarehouse
-require "byebug"
-  def self.init
-    @grid = []
-  end
-
-  def self.store(x, y, w, h, p)
-    if x.is_a?(Integer) && y.is_a?(Integer) && x >= 0 && y >= 0
-      if fit(@grid, x, y, w, h)
-        @grid << {x: x, y: y, w: w, h: h, id: p}
-      else
-        "I doesn t fit"
-      end
-    else
-      "Wrong position"
-    end
-  end
-
-  def self.remove(x, y)
-    if @grid.select{|crate| crate[:x] == x && crate[:y] == y}.empty?
-      "Crate doesn t exist"
-    else
-      @grid.delete_if{|crate| crate[:x] == x && crate[:y] == y}
-    end
-  end
-
-  def self.locate(p)
-    @grid.select{|crate| crate[:id] == p}
-  end
-
-  def self.grid
-    @grid
-  end
 
   def run
     @live = true
     puts 'Type `help` for instructions on usage'
     while @live
       print '> '
-      command = gets.chomp
-      case command
+      command = gets.chomp.split(" ")
+      x = command[1].to_i
+      y = command[2].to_i
+      w = command[3].to_i
+      h = command[4].to_i
+      p = command[5]
+      case command.first
         when 'help'
           show_help_message
+        when 'init'
+          puts Grid.init(x, y)
+        when 'store'
+          puts Grid.store(x, y, w, h, p)
+        when 'locate'
+          puts locate(p)
+        when 'remove'
+          puts Grid.locate(x, y)
+        when 'view'
+          print_grid Grid.view
         when 'exit'
           exit
         else
           show_unrecognized_message
       end
+    end
+  end
+
+  def self.init(w, h)
+    Grid.init(w, h)
+    "grid initialized"
+  end
+
+  def self.locate(p)
+    response = Grid.locate(p)
+    "crate list for #{p}: #{response}"
+  end
+
+  def self.remove(x, y)
+    if Grid.remove(x,y).nil?
+      "Crate doesn t exist"
+    else
+      "crate #{x} #{y} deleted"
+    end
+  end
+
+  def self.store(x, y, w, h, p)
+    case Grid.store(x, y, w, h, p)
+      when :fit
+        "I doesn t fit"
+      when :position
+        "Wrong position"
+      else
+        "new crate added"
     end
   end
 
@@ -70,10 +85,11 @@ exit             Exits the application.'
     @live = false
   end
 
-  def self.fit(grid, x, y, w, h)
-    grid.map do |hash|
-      !((hash[:x] + hash[:w]) > x && (hash[:y] + hash[:h]) > y && hash[:x] <= x && hash[:y] <= y  || (x + w) > hash[:x] && (y + h) > hash[:y] && x  <= hash[:x] && y <= hash[:y])
-    end.all?
+  def print_grid(grid)
+    grid.reverse.each do |array|
+      print array.join(" ")
+      print "\n"
+    end
   end
 
 end

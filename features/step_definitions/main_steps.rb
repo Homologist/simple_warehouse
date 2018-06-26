@@ -1,5 +1,5 @@
-Given("a grid") do
-  SimpleWarehouse.init
+Given("a grid of size {int} {int}") do |int, int2|
+  SimpleWarehouse.init(int, int2)
 end
 
 Given("a square crate of size {int} product code {int} at position {int} {int}") do |int, int2, int3, int4|
@@ -11,11 +11,11 @@ When("I remove the crate at position {int} {int}") do |int, int2|
 end
 
 Then("I can't see the crate at position {int} {int}") do |int, int2|
-  expect(SimpleWarehouse.grid.empty?).to eq(true)
+  expect(Grid.grid.empty?).to eq(true)
 end
 
 When("I locate crate of product code {int}") do |int|
-  @located = SimpleWarehouse.locate(int)
+  @located = Grid.locate(int)
 end
 
 Then("I can see all crate of product code {int}") do |int|
