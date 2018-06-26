@@ -1,13 +1,13 @@
 Given("a grid of size {int} {int}") do |int, int2|
-  SimpleWarehouse.init(int, int2)
+  SimpleWarehouse.new.init(int, int2)
 end
 
 Given("a square crate of size {int} product code {int} at position {int} {int}") do |int, int2, int3, int4|
-  @response = SimpleWarehouse.store(int3, int4, int, int, int2)
+  @response = SimpleWarehouse.new.store(int3, int4, int, int, int2)
 end
 
 When("I remove the crate at position {int} {int}") do |int, int2|
-  @response = SimpleWarehouse.remove(int, int2)
+  @response = SimpleWarehouse.new.remove(int, int2)
 end
 
 Then("I can't see the crate at position {int} {int}") do |int, int2|

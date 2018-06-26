@@ -15,52 +15,52 @@ class SimpleWarehouse
       h = command[4].to_i
       p = command[5]
       case command.first
-        when 'help'
-          show_help_message
-        when 'init'
-          puts Grid.init(x, y)
-        when 'store'
-          puts Grid.store(x, y, w, h, p)
-        when 'locate'
-          puts locate(p)
-        when 'remove'
-          puts Grid.locate(x, y)
-        when 'view'
-          print_grid Grid.view
-        when 'exit'
-          exit
-        else
-          show_unrecognized_message
+      when 'help'
+        show_help_message
+      when 'init'
+        puts init(x, y)
+      when 'store'
+        puts store(x, y, w, h, p)
+      when 'locate'
+        puts locate(p)
+      when 'remove'
+        puts remove(x, y)
+      when 'view'
+        print_grid Grid.view
+      when 'exit'
+        exit
+      else
+        show_unrecognized_message
       end
     end
   end
 
-  def self.init(w, h)
+  def init(w, h)
     Grid.init(w, h)
-    "grid initialized"
+    'grid initialized'
   end
 
-  def self.locate(p)
+  def locate(p)
     response = Grid.locate(p)
-    "crate list for #{p}: #{response}"
+    'crate list for #{p}: #{response}'
   end
 
-  def self.remove(x, y)
+  def remove(x, y)
     if Grid.remove(x,y).nil?
-      "Crate doesn t exist"
+      'Crate doesn t exist'
     else
-      "crate #{x} #{y} deleted"
+      'crate #{x} #{y} deleted'
     end
   end
 
-  def self.store(x, y, w, h, p)
+  def store(x, y, w, h, p)
     case Grid.store(x, y, w, h, p)
-      when :fit
-        "I doesn t fit"
-      when :position
-        "Wrong position"
-      else
-        "new crate added"
+    when :fit
+      'I doesn t fit'
+    when :position
+      'Wrong position'
+    else
+      'new crate added'
     end
   end
 
@@ -86,8 +86,8 @@ exit             Exits the application.'
   end
 
   def print_grid(grid)
-    grid.reverse.each do |array|
-      print array.join(" ")
+    grid.reverse_each do |array|
+      print array.join(' ')
       print "\n"
     end
   end

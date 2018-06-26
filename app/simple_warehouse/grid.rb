@@ -1,7 +1,7 @@
 class Grid
 
   def self.init(w, h)
-    @size = {w: w, h: h}
+    @size = { w: w, h: h }
     @grid = []
   end
 
@@ -41,11 +41,11 @@ class Grid
     @size
   end
 
-  private
+  private_class_method
 
   def self.fit(grid, x, y, w, h)
     grid.map do |hash|
-      !((hash.max_right) > x && (hash.max_top) > y && hash.x <= x && hash.y <= y  || (x + w) > hash.x && (y + h) > hash.y && x  <= hash.x && y <= hash.y)
+      !((hash.max_right) > x && (hash.max_top) > y && hash.x <= x && hash.y <= y || (x + w) > hash.x && (y + h) > hash.y && x <= hash.x && y <= hash.y)
     end.all?
   end
 
@@ -54,14 +54,14 @@ class Grid
     final = []
     full_grid.each_with_index do |array, y|
       final << array.map.with_index do |hash, x|
-        finded = temp_grid.select{|crate| crate.x < x + 1 && crate.max_right > x + 1 && crate.y < y + 1 && crate.max_top > y + 1}.first
-        crate_start = temp_grid.select{|crate| crate.middle_right == x + 1 && crate.middle_top == y + 1}.first
+        finded = temp_grid.select{ |crate| crate.x < x + 1 && crate.max_right > x + 1 && crate.y < y + 1 && crate.max_top > y + 1 }.first
+        crate_start = temp_grid.select{ |crate| crate.middle_right == x + 1 && crate.middle_top == y + 1 }.first
         if crate_start
-          "#{crate_start.id}"
+          crate_start.id.to_s
         elsif finded
-          " "
+          ' '
         else
-          "."
+          '.'
         end
       end
     end
@@ -73,11 +73,10 @@ class Grid
     (1..sizes[:w]).each do |x|
       row = []
       (1..sizes[:h]).each do |y|
-        row << {x: x, y: y, kind: :dot}
+        row << { x: x, y: y, kind: :dot }
       end
       temp_grid << row
     end
     temp_grid
   end
-
 end
