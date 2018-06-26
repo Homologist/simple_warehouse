@@ -282,6 +282,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   shoulda-matchers
   simplecov
+  terminal-table
   time_difference
   timecop
   zeus (~> 0.15.4)

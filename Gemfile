@@ -16,6 +16,7 @@ gem 'fivemat'
 gem 'simplecov',                    require: false
 gem 'guard-rspec', require: false  # zeus 0.15.4
 gem 'guard-zeus'
+gem 'terminal-table'
 # Linter
 gem 'guard-cucumber'
 gem 'pronto', '~> 0.9.5'
