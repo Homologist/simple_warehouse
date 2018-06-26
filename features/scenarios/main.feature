@@ -4,7 +4,7 @@ Feature: Move stuff in our storage
 
   Scenario: I want to remove a crate
     Given a grid
-    And a square crate of size 1 product code 42 at position 0 0
+    And a square crate of size 1 product code 42 at position 3 2
     When I remove the crate at position 3 2
     Then I can't see the crate at position 3 2
 
