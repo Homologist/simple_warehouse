@@ -35,5 +35,24 @@ Overwrite this `README`, outlining the reasoning behind your design decisions an
 
 Please either fork this repo and send us a pull request, or return a `tar.gz` of your local repository.
 
+First use the class method instead if instance method because from the begining
+I saw this problem from a game prospective. When you have one chart available
+for everybody. Some improvement could be to go full singleton design pattern and
+use instance method instead.
+
+I improve the speed of execution by caching. The view is now cached. So there is
+less computation and more memory use.
+It changes instance variable instead of changing copies again less
+computation more memory.
+It also only compute for new element, so there is the method add_crate instead
+of recompute for everything at each call. Less computation.
+
+If we grid a square of size N and we have M crate we went from N^2*M operation before
+caching of the grid and after N^2. We could do better by adding a form quick sort
+algorythm and to Nlog N.
+
+We could have add more error messages for each cases
+
+
 ### Alternatives to Ruby
 If you feel your skills are better demonstrated in a different language, please feel free to submit your solution in the language of your choice.  Be sure to include full instructions on how to build and run your code.
