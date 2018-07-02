@@ -1,5 +1,6 @@
 require_relative "simple_warehouse/grid"
 require_relative "simple_warehouse/crate"
+require_relative "simple_warehouse/view"
 
 class SimpleWarehouse
 
@@ -9,22 +10,19 @@ class SimpleWarehouse
     while @live
       print '> '
       command = gets.chomp.split(" ")
-      x = command[1].to_i
-      y = command[2].to_i
-      w = command[3].to_i
-      h = command[4].to_i
+      x = command[1]
       p = command[5]
       case command.first
       when 'help'
         show_help_message
       when 'init'
-        puts init(x, y)
+        puts init(*command[1..2].map(&:to_i))
       when 'store'
-        puts store(x, y, w, h, p)
+        puts store(*command[1..4].map(&:to_i), p)
       when 'locate'
-        puts locate(p)
+        puts locate(x.to_s)
       when 'remove'
-        puts remove(x, y)
+        puts remove(*command[1..2].map(&:to_i))
       when 'view'
         print_grid Grid.view
       when 'exit'
@@ -37,29 +35,32 @@ class SimpleWarehouse
 
   def init(w, h)
     Grid.init(w, h)
+    View.populate
     'grid initialized'
   end
 
   def locate(p)
     response = Grid.locate(p)
-    'crate list for #{p}: #{response}'
+    "crate list for " + p.to_s + ": " + response.to_s
   end
 
   def remove(x, y)
-    if Grid.remove(x,y).nil?
-      'Crate doesn t exist'
+    if crate = Grid.remove(x, y)
+       View.remove_crate(crate)
+      "crate " + x.to_s + " " + y.to_s + " deleted"
     else
-      'crate #{x} #{y} deleted'
+      'Crate doesn t exist'
     end
   end
 
   def store(x, y, w, h, p)
-    case Grid.store(x, y, w, h, p)
+    case crate = Grid.store(x, y, w, h, p)
     when :fit
       'I doesn t fit'
     when :position
       'Wrong position'
     else
+       View.add_crate(crate)
       'new crate added'
     end
   end

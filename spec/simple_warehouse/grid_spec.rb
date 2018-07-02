@@ -14,16 +14,17 @@ RSpec.describe Grid do
       @x, @y, @w, @h, @p = [0, 0, 1, 2, "A"]
       Grid.init(4, 4)
     end
+
     it "store a new crate at the good position size and id" do
-      params = [Crate.new(@x, @y, @w, @h, @p)]
+      params = Crate.new(@x, @y, @w, @h, @p)
       crate = Grid.store(@x, @y, @w, @h, @p)
       expect(crate).to eq(params)
     end
 
     it "remove a crate at the good position" do
       Grid.store(@x, @y, @w, @h, @p)
-      grid = Grid.remove(@x, @y)
-      expect(grid.empty?).to eq(true)
+      Grid.remove(@x, @y)
+      expect(Grid.grid.empty?).to eq(true)
     end
 
     it "locate a crate at the good position" do
