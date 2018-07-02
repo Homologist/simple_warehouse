@@ -35,21 +35,20 @@ Overwrite this `README`, outlining the reasoning behind your design decisions an
 
 Please either fork this repo and send us a pull request, or return a `tar.gz` of your local repository.
 
-First use the class method instead if instance method because from the begining
+First I use class method instead of instance method because.
 I saw this problem from a game prospective. When you have one chart available
-for everybody. Some improvement could be to go full singleton design pattern and
-use instance method instead.
+for everybody. Some improvement could be done using the singleton design pattern
+and instance method instead of class method
 
-I improve the speed of execution by caching. The view is now cached. So there is
+I improved the speed of execution by caching. The rendering is now cached. So there is
 less computation and more memory use.
-It changes instance variable instead of changing copies again less
-computation more memory.
-It also only compute for new element, so there is the method add_crate instead
+There is also more computation using variables rather than copies.
+It also only re render for the new crate (add_crate method) instead
 of recompute for everything at each call. Less computation.
 
-If we grid a square of size N and we have M crate we went from N^2*M operation before
-caching of the grid and after N^2. We could do better by adding a form quick sort
-algorythm and to Nlog N.
+If the grid is a square of size N and we have M crate we went from N^2*M operation before
+caching of the grid to N^2. We could do better by adding a form quick sort
+algorythm and to Nlog N.(for a store action)
 
 We could have add more error messages for each cases
 
